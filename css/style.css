@@ -248,3 +248,8 @@ body {
   margin-bottom: 20px;
   font-size: 17px;
 }
+.delete {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+}
