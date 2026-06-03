@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Запази час | Art By Julie</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Art By Julie Logo">
+  </a>
+
+  <nav class="main-nav">
+    <a href="index.html">Начало</a>
+    <a href="services.html">Услуги</a>
+    <a href="gallery.html">Галерия</a>
+    <a href="booking.html">Запази час</a>
+    <a href="contact.html">Контакти</a>
+  </nav>
+</header>
+
+<main class="booking-page">
+  <h2>Запази час</h2>
+  <p>Избери услуга, дата и свободен час.</p>
+
+  <form id="bookingForm" class="booking-form">
+    <label>
+      Име:
+      <input type="text" id="clientName" required>
+    </label>
+
+    <label>
+      Телефон:
+      <input type="tel" id="phone" required>
+    </label>
+
+    <label>
+      Услуга:
+      <select id="service" required>
+        <option value="">Избери услуга</option>
+        <option value="Маникюр">Маникюр</option>
+        <option value="Гел лак">Гел лак</option>
+        <option value="Поддръжка">Поддръжка</option>
+        <option value="Nail Art">Nail Art</option>
+      </select>
+    </label>
+
+    <label>
+      Дата:
+      <input type="date" id="appointmentDate" required>
+    </label>
+
+    <label>
+      Час:
+      <select id="appointmentTime" required>
+        <option value="">Първо избери дата</option>
+      </select>
+    </label>
+
+    <button type="submit">Запази час</button>
+
+    <p id="bookingMessage"></p>
+  </form>
+</main>
+
+<script src="js/booking.js"></script>
+</body>
+</html>
