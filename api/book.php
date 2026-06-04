@@ -38,10 +38,33 @@ try {
         $appointment_time
     ]);
 
+    $to = "office@REMOVED.eu";
+    $subject = "Нова резервация | Art By Julie";
+
+    $message = "
+Нова резервация:
+
+Име: {$client_name}
+Телефон: {$phone}
+Услуга: {$service}
+Дата: {$appointment_date}
+Час: {$appointment_time}
+
+Провери админ панела:
+https://REMOVED.eu/admin/login.php
+";
+
+    $headers = "From: Art By Julie <office@REMOVED.eu>\r\n";
+    $headers .= "Reply-To: office@REMOVED.eu\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+    mail($to, $subject, $message, $headers);
+
     echo json_encode([
         "success" => true,
         "message" => "Часът е запазен успешно."
     ]);
+
 } catch (PDOException $e) {
     if ($e->getCode() == 23000) {
         http_response_code(409);
