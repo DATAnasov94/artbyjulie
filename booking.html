@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -27,6 +28,7 @@
   <p>Избери услуга, дата и свободен час.</p>
 
   <form id="bookingForm" class="booking-form">
+
     <label>
       Име:
       <input type="text" id="clientName" required>
@@ -38,35 +40,23 @@
     </label>
 
     <label>
+      Категория:
+      <select id="serviceCategory" required>
+        <option value="">Избери категория</option>
+        <option value="gel">Укрепване с гел</option>
+        <option value="extensions">Ноктопластика</option>
+        <option value="pedicure">Педикюр</option>
+        <option value="japanese">Японски маникюр</option>
+        <option value="decorations">Декорации</option>
+      </select>
+    </label>
+
+    <label>
       Услуга:
       <select id="service" required>
-  <option value="">Избери услуга</option>
-
-  <optgroup label="Укрепване с гел">
-    <option value="Укрепване с гел - къси нокти">Къси нокти</option>
-    <option value="Укрепване с гел - средни нокти">Средни нокти</option>
-    <option value="Укрепване с гел - дълги нокти">Дълги нокти</option>
-    <option value="Укрепване с гел - екстремно дълги">Екстремно дълги</option>
-  </optgroup>
-
-  <label>
-  Категория:
-  <select id="serviceCategory" required>
-    <option value="">Избери категория</option>
-    <option value="gel">Укрепване с гел</option>
-    <option value="extensions">Ноктопластика</option>
-    <option value="pedicure">Педикюр</option>
-    <option value="japanese">Японски маникюр</option>
-    <option value="decorations">Декорации</option>
-  </select>
-</label>
-
-<label>
-  Услуга:
-  <select id="service" required>
-    <option value="">Първо избери категория</option>
-  </select>
-</label>
+        <option value="">Първо избери категория</option>
+      </select>
+    </label>
 
     <label>
       Дата:
@@ -83,9 +73,12 @@
     <button type="submit">Запази час</button>
 
     <p id="bookingMessage"></p>
+
   </form>
 </main>
 
 <script src="js/booking.js"></script>
+
 </body>
 </html>
+```
