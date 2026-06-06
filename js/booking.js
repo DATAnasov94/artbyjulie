@@ -1,5 +1,9 @@
 const serviceCategory = document.getElementById("serviceCategory");
 const service = document.getElementById("service");
+const appointmentDate = document.getElementById("appointmentDate");
+const appointmentTime = document.getElementById("appointmentTime");
+const bookingForm = document.getElementById("bookingForm");
+const bookingMessage = document.getElementById("bookingMessage");
 
 const services = {
   gel: [
@@ -35,29 +39,30 @@ serviceCategory.addEventListener("change", () => {
 
   service.innerHTML = "";
 
-  if (!selectedCategory) {
+  if (!selectedCategory || !services[selectedCategory]) {
     service.innerHTML = "<option value=''>Първо избери категория</option>";
     return;
   }
 
   service.innerHTML = "<option value=''>Избери услуга</option>";
 
-  services[selectedCategory].forEach(item => {
+  services[selectedCategory].forEach((item) => {
     const option = document.createElement("option");
     option.value = item;
     option.textContent = item;
     service.appendChild(option);
   });
 });
-const appointmentDate = document.getElementById("appointmentDate");
-const appointmentTime = document.getElementById("appointmentTime");
-const bookingForm = document.getElementById("bookingForm");
-const bookingMessage = document.getElementById("bookingMessage");
 
 appointmentDate.addEventListener("change", async () => {
   const selectedDate = appointmentDate.value;
 
-  appointmentTime.innerHTML = "<option>Зареждане...</option>";
+  if (!selectedDate) {
+    appointmentTime.innerHTML = "<option value=''>Първо избери дата</option>";
+    return;
+  }
+
+  appointmentTime.innerHTML = "<option value=''>Зареждане...</option>";
 
   try {
     const response = await fetch(`api/get_slots.php?date=${selectedDate}`);
@@ -70,7 +75,7 @@ appointmentDate.addEventListener("change", async () => {
       return;
     }
 
-    result.availableSlots.forEach(slot => {
+    result.availableSlots.forEach((slot) => {
       const cleanSlot = slot.slice(0, 5);
 
       const option = document.createElement("option");
@@ -90,7 +95,7 @@ bookingForm.addEventListener("submit", async (e) => {
   const data = {
     client_name: document.getElementById("clientName").value,
     phone: document.getElementById("phone").value,
-    
+    service: service.value,
     appointment_date: appointmentDate.value,
     appointment_time: appointmentTime.value
   };
@@ -107,15 +112,15 @@ bookingForm.addEventListener("submit", async (e) => {
     const result = await response.json();
 
     if (!response.ok) {
-      bookingMessage.textContent = result.error;
+      bookingMessage.textContent = result.error || "Възникна грешка.";
       return;
     }
 
-bookingMessage.textContent = result.message;
-bookingForm.reset();
+    bookingMessage.textContent = result.message;
+    bookingForm.reset();
 
-service.innerHTML = "<option value=''>Първо избери категория</option>";
-appointmentTime.innerHTML = "<option value=''>Първо избери дата</option>";
+    service.innerHTML = "<option value=''>Първо избери категория</option>";
+    appointmentTime.innerHTML = "<option value=''>Първо избери дата</option>";
   } catch (error) {
     bookingMessage.textContent = "Възникна грешка. Моля, опитайте отново.";
   }
