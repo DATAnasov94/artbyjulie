@@ -2,8 +2,8 @@
 
 require_once "../api/db.php";
 
-$username = "REMOVED";
-$password = "REMOVED";
+$username = "******";
+$password = "*********";
 
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
