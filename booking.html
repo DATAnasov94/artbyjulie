@@ -40,13 +40,33 @@
     <label>
       Услуга:
       <select id="service" required>
-        <option value="">Избери услуга</option>
-        <option value="Маникюр">Маникюр</option>
-        <option value="Гел лак">Гел лак</option>
-        <option value="Поддръжка">Поддръжка</option>
-        <option value="Nail Art">Nail Art</option>
-      </select>
-    </label>
+  <option value="">Избери услуга</option>
+
+  <optgroup label="Укрепване с гел">
+    <option value="Укрепване с гел - къси нокти">Къси нокти</option>
+    <option value="Укрепване с гел - средни нокти">Средни нокти</option>
+    <option value="Укрепване с гел - дълги нокти">Дълги нокти</option>
+    <option value="Укрепване с гел - екстремно дълги">Екстремно дълги</option>
+  </optgroup>
+
+  <label>
+  Категория:
+  <select id="serviceCategory" required>
+    <option value="">Избери категория</option>
+    <option value="gel">Укрепване с гел</option>
+    <option value="extensions">Ноктопластика</option>
+    <option value="pedicure">Педикюр</option>
+    <option value="japanese">Японски маникюр</option>
+    <option value="decorations">Декорации</option>
+  </select>
+</label>
+
+<label>
+  Услуга:
+  <select id="service" required>
+    <option value="">Първо избери категория</option>
+  </select>
+</label>
 
     <label>
       Дата:
