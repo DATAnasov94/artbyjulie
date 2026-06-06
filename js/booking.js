@@ -1,3 +1,54 @@
+const serviceCategory = document.getElementById("serviceCategory");
+const service = document.getElementById("service");
+
+const services = {
+  gel: [
+    "Укрепване с гел - къси нокти",
+    "Укрепване с гел - средни нокти",
+    "Укрепване с гел - дълги нокти",
+    "Укрепване с гел - екстремно дълги"
+  ],
+  extensions: [
+    "Ноктопластика - къси нокти",
+    "Ноктопластика - средни нокти",
+    "Ноктопластика - дълги нокти",
+    "Ноктопластика - екстремно дълги",
+    "Ноктопластика - изграждане на един нокът"
+  ],
+  pedicure: [
+    "Педикюр - основен без покритие",
+    "Педикюр - цялостен с покритие"
+  ],
+  japanese: [
+    "Японски маникюр"
+  ],
+  decorations: [
+    "Декорация - бърза",
+    "Декорация - рисувана",
+    "Декорация - релефна",
+    "Декорация - вградена"
+  ]
+};
+
+serviceCategory.addEventListener("change", () => {
+  const selectedCategory = serviceCategory.value;
+
+  service.innerHTML = "";
+
+  if (!selectedCategory) {
+    service.innerHTML = "<option value=''>Първо избери категория</option>";
+    return;
+  }
+
+  service.innerHTML = "<option value=''>Избери услуга</option>";
+
+  services[selectedCategory].forEach(item => {
+    const option = document.createElement("option");
+    option.value = item;
+    option.textContent = item;
+    service.appendChild(option);
+  });
+});
 const appointmentDate = document.getElementById("appointmentDate");
 const appointmentTime = document.getElementById("appointmentTime");
 const bookingForm = document.getElementById("bookingForm");
@@ -39,7 +90,7 @@ bookingForm.addEventListener("submit", async (e) => {
   const data = {
     client_name: document.getElementById("clientName").value,
     phone: document.getElementById("phone").value,
-    service: document.getElementById("service").value,
+    service: service.value,
     appointment_date: appointmentDate.value,
     appointment_time: appointmentTime.value
   };
