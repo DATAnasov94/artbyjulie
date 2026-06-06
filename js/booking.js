@@ -90,7 +90,7 @@ bookingForm.addEventListener("submit", async (e) => {
   const data = {
     client_name: document.getElementById("clientName").value,
     phone: document.getElementById("phone").value,
-    service: service.value,
+    
     appointment_date: appointmentDate.value,
     appointment_time: appointmentTime.value
   };
@@ -111,9 +111,11 @@ bookingForm.addEventListener("submit", async (e) => {
       return;
     }
 
-    bookingMessage.textContent = result.message;
-    bookingForm.reset();
-    appointmentTime.innerHTML = "<option value=''>Първо избери дата</option>";
+bookingMessage.textContent = result.message;
+bookingForm.reset();
+
+service.innerHTML = "<option value=''>Първо избери категория</option>";
+appointmentTime.innerHTML = "<option value=''>Първо избери дата</option>";
   } catch (error) {
     bookingMessage.textContent = "Възникна грешка. Моля, опитайте отново.";
   }
