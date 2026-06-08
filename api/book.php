@@ -30,13 +30,15 @@ try {
         VALUES (?, ?, ?, ?, ?)
     ");
 
-    $stmt->execute([
-        $client_name,
-        $phone,
-        $service,
-        $appointment_date,
-        $appointment_time
-    ]);
+ $stmt->execute([
+    $client_name,
+    $phone,
+    $service,
+    $appointment_date,
+    $appointment_time
+]);
+
+$appointment_id = $pdo->lastInsertId();
 
     $to = "office@REMOVED.eu";
     $subject = "Нова резервация | Art By Julie";
@@ -60,10 +62,12 @@ https://REMOVED.eu/admin/login.php
 
     mail($to, $subject, $message, $headers);
 
-    echo json_encode([
-        "success" => true,
-        "message" => "Часът е запазен успешно."
-    ]);
+echo json_encode([
+    "success" => true,
+    "message" => "Часът е запазен успешно.",
+    "appointment_id" => $appointment_id,
+    "payment_url" => "payments/start_payment.php?appointment_id=" . $appointment_id
+]);
 
 } catch (PDOException $e) {
     if ($e->getCode() == 23000) {

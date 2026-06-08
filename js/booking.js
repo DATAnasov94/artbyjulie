@@ -117,11 +117,21 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      bookingMessage.textContent = result.message;
-      bookingForm.reset();
+      bookingMessage.innerHTML = `
+      <div class="booking-success">
+      <strong>${result.message}</strong>
+      <p>Може да платите онлайн сега или да заплатите на място.</p>
 
-      service.innerHTML = "<option value=''>Първо избери категория</option>";
-      appointmentTime.innerHTML = "<option value=''>Първо избери дата</option>";
+      <a href="${result.payment_url}" class="pay-online-btn">
+      Плати онлайн
+    </a>
+  </div>
+`;
+
+bookingForm.reset();
+
+service.innerHTML = "<option value=''>Първо избери категория</option>";
+appointmentTime.innerHTML = "<option value=''>Първо избери дата</option>";
     } catch (error) {
       bookingMessage.textContent = "Възникна грешка. Моля, опитайте отново.";
     }
